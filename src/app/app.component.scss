@@ -1,0 +1,45 @@
+.content{
+    padding-left: 250px;
+}
+
+mat-toolbar{
+    position: relative;
+    z-index: 5;
+}
+
+mat-sidenav-container{
+    height: calc(100vh - 64px);
+}
+
+mat-sidenav,
+mat-sidenav-content {
+  transition: all 300ms ease-in-out;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .toolbar-center {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .toolbar-title {
+    margin-left: 18px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
+  }
+
+  .icono {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 100%;
+    padding: 5px 7px;
+  }
+
+}

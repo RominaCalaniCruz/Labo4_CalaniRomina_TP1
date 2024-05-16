@@ -1,0 +1,25 @@
+<mat-grid-list [cols]="gridCols" rowHeight="300px">
+    
+  <mat-grid-tile>
+      <!-- <img src="../../assets/gifs/slot.jpg" (mouseenter)="mostrarGif('../../assets/gifs/slot.gif')" (mouseleave)="ocultarGif()">
+      <img *ngIf="gifSeleccionado === juego.gif" [src]="juego.gif" alt="GIF"> -->
+      <div class="contenedor-imagen"  (mouseenter)="alternarGif()" (mouseleave)="alternarGif()" (click)="navegarAJuego('games/slot')">
+          <img [src]="mostrarGif ? gif : imagen" alt="Imagen">
+      </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <div class="contenedor-imagen"   (click)="navegarAJuego('games/hangman')">
+          <img [src]=" imagen2" alt="Imagen">
+        </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <div class="contenedor-imagen"  (click)="navegarAJuego('games/cards')">
+          <img [src]=" imagen3" alt="Imagen">
+        </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <div class="contenedor-imagen"  (click)="navegarAJuego('games/trivia')">
+          <img [src]=" imagen4" alt="Imagen">
+        </div>
+  </mat-grid-tile>
+</mat-grid-list>

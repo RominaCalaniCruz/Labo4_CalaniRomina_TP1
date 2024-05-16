@@ -1,0 +1,33 @@
+<!-- <div class="container">
+    <div class="chat-list">
+      <h2>Mensajes del grupo</h2>
+      <ul>
+        <li *ngFor="let message of messages">
+          <span>{{ message.username }}:</span>
+          <p>{{ message.text }}</p>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="chat-input">
+      <h2>Mensajes enviados por {{ username }}</h2>
+      <form (ngSubmit)="sendMessage()">
+        <input type="text" [(ngModel)]="newMessage" placeholder="Escribe un mensaje...">
+        <button type="submit">Enviar</button>
+      </form>
+      <ul>
+        <li *ngFor="let message of myMessages">
+          <span>{{ message.username }}:</span>
+          <p>{{ message.text }}</p>
+        </li>
+      </ul>
+    </div>
+  </div> -->
+  <div>
+    <h1>chat </h1>
+    <div *ngFor="let message of messages">
+      <p>{{ message.senderName }}: {{ message.content }}</p>
+    </div>
+    <input type="text">
+    <button >Enviar</button>
+  </div>

@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px;
+  }
+  mat-card-header, mat-card-subtitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .game-card, .creator-card {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 16px;
+  }
+  .mat-list-item {
+    display: flex;
+    align-items: center;
+    // margin-bottom: 30px;
+  }
+  .game-title {
+    font-weight: bold;
+  }
+  .game-icon {
+    // margin-right: 8px;
+    width: 40px; /* Tamaño mediano para las imágenes */
+    height: auto;  /* Tamaño mediano para las imágenes */
+  }
+  .game-description {
+    margin-left: 16px;
+    padding-bottom: 10px;
+  }
+  
+  @media (max-width: 600px) {
+    .game-description {
+        margin-left: 24px;
+    }
+  }

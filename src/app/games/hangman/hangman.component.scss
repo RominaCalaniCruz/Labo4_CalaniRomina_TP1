@@ -1,0 +1,20 @@
+.ahorcado-img{
+    // width: 400px;
+    height: 200px;
+
+}
+.juego{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.botonera{
+    display: flex;
+    padding-bottom: 15px;
+    margin-left: 15px;
+    justify-content: space-between;
+}
+.btn-row button{
+    margin: 5px;
+}

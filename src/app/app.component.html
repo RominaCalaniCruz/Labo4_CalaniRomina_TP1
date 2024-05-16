@@ -1,0 +1,44 @@
+<mat-toolbar color="primary" class="mat-elevation-z3">
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="toolbar-center">
+    <img src="../favicon.ico" class="icono" />
+    <span class="toolbar-title">SALA DE JUEGOS</span>
+  </span>
+
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+    <button style="font-size: 20px;" mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+      {{username}}
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="singOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-template #notLoggedIn>
+    <button (click)="openLogin()"  mat-flat-button >INICIAR SESIÓN</button>
+  </ng-template>
+
+</mat-toolbar>
+<!-- <app-header ></app-header> -->
+
+<!-- <mat-sidenav opened mode="side" [style.width]="sidenavWidth()"> -->
+<mat-sidenav-container>
+  <mat-sidenav style="background-color: #dfe8d1;" opened mode="side" [style.width.px]="sidenavWidth">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+  <!-- <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth"> -->
+  <mat-sidenav-content style="margin-left: 0">
+    <div [style.padding-left.px]="sidenavWidth">
+      <router-outlet />
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

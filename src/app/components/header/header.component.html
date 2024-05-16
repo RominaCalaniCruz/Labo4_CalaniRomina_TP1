@@ -1,0 +1,25 @@
+<mat-toolbar class="mat-elevation-z3">
+    <!-- <mat-toolbar-row class="justify-content-between"> -->
+  
+      <!-- <button mat-icon-button (click)="collapsed.set(!collapsed())"> -->
+        <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+        <img src="../favicon.ico" class="icono">
+        <span class="toolbar-title toolbar-title-with-favicon">SALA DE JUEGOS</span>
+      <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+          ROMINA
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item >
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Cerrar sesión</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+      <ng-template #notLoggedIn>
+        <button mat-button>INICIAR SESIÓN</button>
+      </ng-template>
+  </mat-toolbar>

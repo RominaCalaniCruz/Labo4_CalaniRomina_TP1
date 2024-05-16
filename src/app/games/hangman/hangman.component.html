@@ -1,0 +1,47 @@
+<div class="juego">
+  <div class="row">
+    <div class="col text-center">
+      <img src="assets/img/{{ intentos }}.png" class="ahorcado-img" />
+
+      <h3>
+        Intentos <small> {{ intentos }} / 9</small>
+      </h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-center">
+      <h1>{{ palabraOculta }}</h1>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="gano">
+    <div class="col text-center">
+      <h1>Ganaste!!!</h1>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="perdio">
+    <div class="col text-center">
+      <h1>Perdiste</h1>
+      <h4>{{ palabra }}</h4>
+    </div>
+  </div>
+
+  <div class="" *ngIf="!gano && !perdio">
+    <div class=" ">
+      <ng-container *ngFor="let row of keyboardRows">
+        <div class="botonera btn-row">
+          <button
+            mat-mini-fab
+            color="primary"
+            (click)="comprobar(letra)"
+            *ngFor="let letra of row"
+          >
+            {{ letra }}
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
