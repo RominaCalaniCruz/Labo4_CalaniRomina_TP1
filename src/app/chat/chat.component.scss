@@ -1,8 +1,26 @@
-.container {
-    display: flex;
-    flex-direction: row;
+.chat-content {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+    // height: 200px;
+    // width: 200px;
+    // border: 1px solid red;
   }
-  
+  .message-input{
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #a893ca;
+  }
+  .chat-container{
+    border: 1px solid red;
+    width: 400px;
+  }
+  .scroll-container {
+    max-height: 400px; /* Establece la altura máxima del contenedor de scroll */
+    overflow-y: auto; /* Agrega scroll vertical si es necesario */
+  }
   .chat-list {
     width: 50%;
     padding: 20px;
@@ -26,4 +44,16 @@
   
   span {
     font-weight: bold;
+  }
+
+  .current-user {
+    align-self: flex-end;
+    // background-color: #d1e7dd;
+    text-align: right;
+  }
+  
+  .other-user {
+    align-self: flex-start;
+    // background-color: #d6a1a6;
+    text-align: left;
   }

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { getFirestore, setDoc , doc ,getDoc, addDoc, collection,collectionData, Firestore} from '@angular/fire/firestore';
+import { getFirestore, setDoc , doc ,getDoc, addDoc, collection,collectionData, Firestore, Timestamp} from '@angular/fire/firestore';
 import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, UserCredential ,signOut } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 // import { Subscription } from 'rxjs';
@@ -11,7 +11,11 @@ export interface User{
   password: string,
   name: string
 }
-
+export interface Message{
+  nombre: string,
+  fecha: Timestamp,
+  mensaje: string
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -81,6 +85,9 @@ export class FirebaseService {
   //   return user ? user.name : null;
   // }
 
+  setDocument(mnsj: Message){
+    return addDoc(collection(this.firestore, 'mensajes'), mnsj);
+  }
   async getDocument(path: string){
     return (await getDoc(doc(getFirestore(), path))).data();
   }
@@ -109,6 +116,7 @@ export class FirebaseService {
     })
 
   }
+
   saveInLocalStorage(key: string, value: any){
     return localStorage.setItem(key, JSON.stringify(value));
   }

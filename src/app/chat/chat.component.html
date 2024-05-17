@@ -25,9 +25,29 @@
   </div> -->
   <div>
     <h1>chat </h1>
-    <div *ngFor="let message of messages">
-      <p>{{ message.senderName }}: {{ message.content }}</p>
-    </div>
-    <input type="text">
-    <button >Enviar</button>
   </div>
+
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+
+  <div class="chat-content ">
+    <div class="chat-container">
+
+      <div class="scroll-container">
+        <div class="messages" #messageContainer>
+          <div *ngFor="let message of messages" [ngClass]="{'current-user': message.nombre === username, 'other-user': message.nombre !== username}">
+            <strong>{{ message.nombre }}:</strong> {{ message.mensaje }} 
+            <p>{{ message.fecha.toDate() | date:'short' }}</p>
+          </div>
+        </div>
+  
+      </div>
+    
+  
+  
+      <div class="message-input">
+        <input type="text" [(ngModel)]="newMessage" placeholder="Escribe algo" />
+        <button mat-fab color="warn" (click)="guardarMensaje()"> <mat-icon>send</mat-icon></button>
+      </div>
+    </div>
+  </div>
+</div>

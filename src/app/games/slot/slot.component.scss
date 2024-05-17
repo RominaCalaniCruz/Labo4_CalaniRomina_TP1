@@ -1,0 +1,48 @@
+.slot-machine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // flex-direction: row;
+    // border: 2px solid rgb(2, 2, 2);
+    // height: 400px;
+    // width: 400px;
+    .reel {
+    //   width: 50%;
+    //   height: 50%;
+    //   background-color: #ddd;
+      display: flex;
+      justify-content: center;
+    //   align-items: center;
+    //   overflow: hidden;
+    
+      .slot {
+        width: 220px;
+        height: 230px;
+        margin: 5px;
+        border: 1px solid black;
+        border-radius: 20%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+        background-size: contain; /* Ajusta el tamaño de la imagen para que se ajuste completamente dentro del contenedor */
+        background-repeat: no-repeat; 
+        padding: 10px;
+        img {
+            width: 100%; // Ajusta el tamaño de la imagen al tamaño del contenedor
+            height: 100%; // Ajusta el tamaño de la imagen al tamaño del contenedor
+            object-fit: contain; // Mantiene la relación de aspecto de la imagen
+            padding: 10px;
+          }
+        // animation: slideAnimation 1s linear infinite;
+      }
+    }
+  }
+
+  .button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:20px;
+    button{
+
+        margin-right: 10px;
+    }
+  }
