@@ -51,7 +51,6 @@ export class AppComponent {
       console.log('La ventana modal se cerró');
       this.username = this.authSvc.getLocalStorage('user').name;
       this.isLoggedIn = true;
-      // Aquí puedes realizar acciones adicionales después de que se cierre la ventana modal
     });
   }
   singOut(){

@@ -43,6 +43,5 @@ export class GamesComponent {
   }
   navegarAJuego(nombre: string): void {
     this.router.navigate([nombre]);
-    // window.location.href = ''+nombre;
   }
 }
