@@ -8,24 +8,29 @@ import { GamesComponent } from './games.component';
 
 const routes: Routes = [
   {
-    path: '', component: GamesComponent
+    path: '',
+    component: GamesComponent,
   },
   {
-    path:'slot',component: SlotComponent
+    path: 'slot',
+    component: SlotComponent,
   },
   {
-    path:'hangman',component: HangmanComponent
+    path: 'hangman',
+    component: HangmanComponent,
   },
   {
-    path:'trivia',component: TriviaComponent
+    path: 'trivia',
+    component: TriviaComponent,
   },
   {
-    path:'cards',component: CardsComponent
-  }
+    path: 'cards',
+    component: CardsComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GamesRoutingModule { }
+export class GamesRoutingModule {}

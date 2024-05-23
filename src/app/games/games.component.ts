@@ -23,11 +23,6 @@ export class GamesComponent {
   // alternarGif(): void {
   //   this.mostrarGif = !this.mostrarGif;
   // }
-  // navegarAJuego(nombre: string): void {
-  //   this.router.navigate(["/games/slot"]);
-  //   // window.location.href = ''+nombre;
-  // }
-  gridCols: number;
   imagen = '../../assets/img/slot.png';
   imagen2 = '../../assets/img/ahorcado2.png';
   imagen3 = '../../assets/img/mayor_menor.png';
@@ -37,7 +32,7 @@ export class GamesComponent {
   gif3 = '';
   gif4 = '';
   mostrarGif = false;
-  constructor(private router: Router) {this.gridCols = window.innerWidth >= 600 ? 2 : 1; }
+  constructor(private router: Router) { }
   alternarGif(): void {
     this.mostrarGif = !this.mostrarGif;
   }
