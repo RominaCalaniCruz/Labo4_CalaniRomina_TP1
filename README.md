@@ -1,6 +1,9 @@
-# SalaDeJuegosTp
+# Trabajo Practico N1 UTN FRA 2024 
 
 Link del proyecto en Firebase: <a href="https://juego-app-web-88ac4.web.app/" target="_blank">Sala de Juegos UTN 2024</a> 
+
+## Version angular
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
 
 ## Development server
