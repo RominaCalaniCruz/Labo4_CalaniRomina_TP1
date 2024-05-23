@@ -14,8 +14,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FirebaseService } from '../../services/firebase.service';
-import { Subscription } from 'rxjs';
-import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { RegisterComponent } from '../register/register.component';
 @Component({
@@ -31,7 +29,6 @@ export class LoginComponent {
     password: ['', Validators.required]
   });
   errorMessage: string;
-
   hide = true;
   selected = 'ninguno';
   showSpinner = false;
@@ -50,7 +47,6 @@ export class LoginComponent {
           next: () => {
             console.log("inicio sesion");
             this.guardarLog(formValues.email);
-            // 
             Swal.fire({
               icon: 'success',
               title: '¡Bienvenido!',
@@ -59,7 +55,6 @@ export class LoginComponent {
               timer: 1300
             });
             setTimeout(() => {
-              // this.guardarLog2(formValues.email);
               this.showSpinner = false;
               this.closeDialog(true);
               this.router.navigate(['home']);
@@ -88,6 +83,7 @@ export class LoginComponent {
       }
     });
   }
+
   guardarLog(email: string) {
     const currentDate = Timestamp.fromDate(new Date());
     const log = {
@@ -97,8 +93,7 @@ export class LoginComponent {
     this.authSvc.setDocument(log, 'logs_users');
   }
 
-
-  autocomplete() {
+  autocompletar() {
     switch (this.selected) {
       case 'option1':
         this.loginForm.setValue({
@@ -130,6 +125,7 @@ export class LoginComponent {
   closeDialog(success: boolean = false) {
     this.dialogRef.close(success);
   }
+//----no sirve----------
   // login() {
   //   if(this.loginForm.valid){
 
