@@ -1,39 +1,42 @@
 <div class="hangman">
   <div class="portada">
-      <img src="assets/ahorcado/{{ intentos }}.png" class="ahorcado-img" />
+    <img src="assets/ahorcado/{{ cantIntentos }}.png" class="ahorcado-img" />
 
-      <h2>
-        Intentos <small> {{ intentos }} / 7</small>
-      </h2>
-    </div>
+    <h2>
+      Intentos <small> {{ cantIntentos }} / 7</small>
+    </h2>
+  </div>
 
   <div class="palabra-oculta" *ngIf="jugando">
-      <h1>{{ palabraOculta }}</h1>
+    <h1>{{ palabraOculta }}</h1>
   </div>
 
   <div class="ganador" *ngIf="gano">
-      <h1>¡Felicidades Ganaste!</h1>
+    <h1>¡Felicidades Ganaste!</h1>
   </div>
 
   <div class="perdedor" *ngIf="perdio">
-      <h1>Ups..perdiste ( ´•︵•` ) </h1>
-      <p>La palabra era: <strong>{{ palabra }}</strong></p>
+    <h1>Ups..perdiste ( ´•︵•` )</h1>
+    <p style="font-size: larger;">
+      La palabra era: <strong>{{ palabra }}</strong>
+    </p>
   </div>
 
   <div class="teclado" *ngIf="!gano && !perdio">
-      <ng-container *ngFor="let row of letrasTeclado; let i=index">
-        <div class="botones">
-          <button *ngFor="let letra of row; let j = index"
-            mat-mini-fab
-            class="boton"
-            color="primary"
-            (click)="comprobar(letra,i,j)"
-            [disabled]="desactivarBoton(i, j)"
-          >
-            {{ letra }}
-          </button>
-        </div>
-      </ng-container>
+    <ng-container *ngFor="let row of letrasTeclado; let i = index">
+      <div class="botones">
+        <button
+          *ngFor="let letra of row; let j = index"
+          mat-mini-fab
+          class="boton"
+          color="primary"
+          (click)="comprobar(letra, i, j)"
+          [disabled]="desactivarBoton(i, j)"
+        >
+          {{ letra }}
+        </button>
+      </div>
+    </ng-container>
   </div>
 
   <div *ngIf="!jugando">
