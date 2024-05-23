@@ -1,40 +1,35 @@
-
 <div class="juego">
-    <h1 style="font-size: 29px;margin-bottom: 10px ; padding: 2px 10px;border-radius: 20px; background-color: azure;">Mayor o menor</h1>
-    <span style="font-size: 20px; margin-bottom: 10px ;padding: 2px 10px;border-radius: 20px;background-color: azure;" *ngIf="!jugando">Adivina si la siguiente carta es mayor o menor a la actual</span>
-    
-    <span style="font-size: 25px; margin-bottom: 10px ;padding: 2px 10px;border-radius: 20px;background-color: azure;">Cantidad de vidas: {{cantVidas}}</span>
-    <div style="display: flex; justify-content: center; align-items: center;" >  
+  <h1 style="font-size: 29px;margin-bottom: 10px ; padding: 2px 10px;border-radius: 20px; background-color: azure;">
+    Mayor o menor</h1>
+  <span style="font-size: 20px; margin-bottom: 10px ;padding: 2px 10px;border-radius: 20px;background-color: azure;"
+    *ngIf="!jugando">Adivina si la siguiente carta es mayor o menor a la actual</span>
 
-      <mat-progress-spinner color="warn" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
-    </div>
-    <div class="hearts-container" *ngIf="jugando">
-        <!-- <i class="heart" [ngClass]="{ 'lost-life': cantVidas <= 1 }"></i>
-        <i class="heart" [ngClass]="{ 'lost-life': cantVidas <= 2 }"></i> -->
-        <mat-icon class="corazon" [ngClass]="{ 'lost-life': cantVidas >= 1 }"
-         >favorite</mat-icon>
-         <mat-icon class="corazon" [ngClass]="{ 'lost-life': cantVidas >= 2 }"
-         >favorite</mat-icon>
-         <mat-icon class="corazon" [ngClass]="{ 'lost-life': cantVidas >= 3 }"
-         >favorite</mat-icon>
-        <!-- <i class="heart" [ngClass]="{ 'lost-life': cantVidas >= 3 }"></i> -->
-      </div>
-    <div *ngIf="!isLoading">
-      <div class="card-container">
-        <div class="card">
-          <img [src]="cards[currentCardIndex].image" >
-          <img [src]="cards[currentCardIndex + 1].image" *ngIf="vistaTemporal">
-          <img [src]="cartaAtras" *ngIf="!vistaTemporal">
-          <!-- <p>{{ cards[currentCardIndex].value }} de {{ cards[currentCardIndex].suit }}</p> -->
-        </div>
-      </div>
-      <div class="inicio" *ngIf="!jugando">
-          <button mat-flat-button color="warn" (click)="iniciarPartida()" >COMENZAR</button>
-        </div>
-      <div class="mayor-menor-btn" *ngIf="jugando" >
-        <button mat-flat-button (click)="guessHigher()">Mayor</button>
-        <button mat-flat-button (click)="guessLower()">Menor</button>
+  <span
+    style="font-size: 25px; margin-bottom: 10px ;padding: 2px 10px;border-radius: 20px;background-color: azure;">Cantidad
+    de vidas: {{cantVidas}}</span>
+  <div style="display: flex; justify-content: center; align-items: center;">
+
+    <mat-progress-spinner color="warn" *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <div class="hearts-container" *ngIf="jugando">
+    <mat-icon class="corazon" [ngClass]="{ 'lost-life': cantVidas >= 1 }">favorite</mat-icon>
+    <mat-icon class="corazon" [ngClass]="{ 'lost-life': cantVidas >= 2 }">favorite</mat-icon>
+    <mat-icon class="corazon" [ngClass]="{ 'lost-life': cantVidas >= 3 }">favorite</mat-icon>
+  </div>
+  <div *ngIf="!isLoading">
+    <div class="card-container">
+      <div class="card">
+        <img [src]="cards[currentCardIndex].image">
+        <img [src]="cards[currentCardIndex + 1].image" *ngIf="vistaTemporal">
+        <img [src]="cartaAtras" *ngIf="!vistaTemporal">
       </div>
     </div>
+    <div class="inicio" *ngIf="!jugando">
+      <button mat-flat-button color="warn" (click)="iniciarPartida()">COMENZAR</button>
+    </div>
+    <div class="mayor-menor-btn" *ngIf="jugando">
+      <button mat-flat-button (click)="esMayor()">Mayor</button>
+      <button mat-flat-button (click)="esMenor()">Menor</button>
+    </div>
+  </div>
 </div>
-  
