@@ -1,53 +1,36 @@
 <div class="juego">
-        <h1 style="background-color: azure; padding: 10px; border-radius: 10px;">¿En que fecha se estreno la pelicula?</h1>
-  
-        <div class="info" *ngIf="!jugando">
-          <!-- <p>Adivina y gana</p> -->
-          <p style="background-color: azure; padding: 10px; border-radius: 10px;"><strong>Tematica: Marvel</strong></p>
-          <button mat-flat-button color="warn" (click)="iniciarJuego()" >COMENZAR</button>
-        </div>
+  <h1 style="background-color: azure; padding: 10px; border-radius: 10px">
+    ¿En que fecha se estreno la pelicula?
+  </h1>
 
-        <div class="partida">
+  <div class="info" *ngIf="!jugando">
+    <!-- <p>Adivina y gana</p> -->
+    <p style="background-color: azure; padding: 10px; border-radius: 10px">
+      <strong>Tematica: Marvel</strong>
+    </p>
+    <button mat-flat-button color="warn" (click)="iniciarJuego()">
+      COMENZAR
+    </button>
+  </div>
 
-          <div class="portada" *ngIf="jugando">
-              <img  *ngIf="opcionCorrecta.poster_path" [src]="'https://image.tmdb.org/t/p/w500/' + opcionCorrecta.poster_path" alt="{{ opcionCorrecta.title }}">
-          </div>
-      
-      
-      
-          <div class="opciones" *ngIf="jugando">
-      
-            
-            <div class="btn-opciones" *ngFor="let movie of preguntasLista[numeroPregunta];let i=index">
-              <button (click)="verificarOpcion(i)"
-              mat-flat-button>{{movie.release_date}}</button>
-            </div>
-      
-          </div>
-        </div>
+  <div class="partida">
+    <div class="portada" *ngIf="jugando">
+      <img
+        *ngIf="opcionCorrecta.poster_path"
+        [src]="'https://image.tmdb.org/t/p/w500/' + opcionCorrecta.poster_path"
+        alt="{{ opcionCorrecta.title }}"
+      />
+    </div>
 
-        
-
-    <!-- <div class="lista" *ngFor="let movie of superheroes">
-        <h2>{{ movie.title }}</h2>
-        <img [style.width.px]="75" *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" alt="{{ movie.title }}">
+    <div class="opciones" *ngIf="jugando">
+      <div
+        class="btn-opciones"
+        *ngFor="let movie of preguntasLista[numeroPregunta]; let i = index"
+      >
+        <button (click)="verificarOpcion(i)" mat-flat-button>
+          {{ movie.release_date }}
+        </button>
       </div>
-      <div class="lista" *ngFor="let movie of superheroes2">
-        <h2>{{ movie.title }}</h2>
-        <img [style.width.px]="75" *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" alt="{{ movie.title }}">
-      </div> -->
-
-      
-    <!-- <div class="opciones">
-        <div *ngIf="superheroes.length > 0">
-            <div *ngFor="let heroe of superheroes" class="hero-card">
-              <h2>{{ heroe.title }}</h2>
-              <img [style.width.px]="75" [src]="heroe.thumbnail.path + '/portrait_incredible.' + heroe.thumbnail.extension" alt="{{ heroe.title }}" class="hero-image">
-            </div>
-          </div>
-
-          <div *ngIf="superheroes.length === 0">
-            <p>No hay heroes.</p>
-          </div>
-    </div> -->
+    </div>
+  </div>
 </div>

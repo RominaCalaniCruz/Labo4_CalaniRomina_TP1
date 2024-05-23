@@ -8,38 +8,35 @@ import Swal from 'sweetalert2';
   templateUrl: './trivia.component.html',
   styleUrl: './trivia.component.scss'
 })
-export class TriviaComponent implements OnInit{
+export class TriviaComponent implements OnInit {
 
   superheroes: any[] = [];
   superheroes2: any[] = [];
   peliculasMarvel: any[] = [];
   peliculasUnidas: any[] = [];
-  opciones: any[] = [];
-  numerosAleatorios: number[] = [];
   opcionCorrecta: any;
   jugando = false;
   adivino: boolean = false;
-  selectedOption: number | null = null;
   preguntasLista: any[][] = [];
-  numeroPregunta:number = 0;
-  constructor(private heroesSvc: PeliculasService){
-
+  numeroPregunta: number = 0;
+  constructor(private peliculasSvc: PeliculasService) {
   }
- ngOnInit() {
-    this.heroesSvc.traerPeliculasMarvel(1).subscribe((response:any) => {
+
+  ngOnInit() {
+    this.peliculasSvc.traerPeliculasMarvel(1).subscribe((response: any) => {
       this.superheroes = response.results;
     });
-    this.heroesSvc.traerPeliculasMarvel(2).subscribe((response:any) => {
+    this.peliculasSvc.traerPeliculasMarvel(2).subscribe((response: any) => {
       this.superheroes2 = response.results;
     });
   }
 
-  iniciarJuego(){
+  iniciarJuego() {
     this.numeroPregunta = 0;
 
     this.peliculasUnidas = this.superheroes.concat(this.superheroes2);
-    this.peliculasMarvel = this.seleccionarPeliculasAleatorias(this.peliculasUnidas,12);
-    this.preguntasLista = this.agruparPeliculas(this.peliculasMarvel,4);
+    this.peliculasMarvel = this.seleccionarPeliculasAleatorias(this.peliculasUnidas, 12);
+    this.preguntasLista = this.agruparPeliculas(this.peliculasMarvel, 4);
     this.mostrarPreguntaActual();
     this.jugando = true;
     // console.log(this.opcionCorrecta);
@@ -63,8 +60,8 @@ export class TriviaComponent implements OnInit{
     return seleccionadas;
   }
 
-  verificarOpcion(indice:number){
-    if(this.preguntasLista[this.numeroPregunta][indice].release_date == this.opcionCorrecta.release_date){
+  verificarOpcion(indice: number) {
+    if (this.preguntasLista[this.numeroPregunta][indice].release_date == this.opcionCorrecta.release_date) {
       console.log("ganaste");
       Swal.fire({
         position: 'top',
@@ -75,7 +72,7 @@ export class TriviaComponent implements OnInit{
       });
       this.adivino = true;
     }
-    else{
+    else {
       console.log("perdiste");
       Swal.fire({
         position: 'top',
@@ -86,18 +83,16 @@ export class TriviaComponent implements OnInit{
       });
     }
     this.numeroPregunta++;
-    if(this.numeroPregunta<this.preguntasLista.length){
+    if (this.numeroPregunta < this.preguntasLista.length) {
       this.mostrarPreguntaActual();
-    }else{
+    } else {
       setTimeout(() => {
-        
+
         console.log("Partida finalizada");
         Swal.fire({
           position: 'top',
           icon: 'success',
-          title: 'PARTIDA FINALIZADA. Conseguiste 0 puntos',
-          // showConfirmButton: false,
-          // timer: 900
+          title: 'PARTIDA FINALIZADA. Conseguiste 0 puntos'
         });
       }, 1000);
       this.jugando = false;
@@ -106,6 +101,6 @@ export class TriviaComponent implements OnInit{
   mostrarPreguntaActual(): void {
     const opciones = this.preguntasLista[this.numeroPregunta];
     this.opcionCorrecta = opciones[Math.floor(Math.random() * opciones.length)];
-    console.log(this.opcionCorrecta.release_date);
+    console.log('opcion correcta: '+this.opcionCorrecta.release_date);
   }
 }
