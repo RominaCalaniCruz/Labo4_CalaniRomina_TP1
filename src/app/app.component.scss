@@ -1,19 +1,30 @@
-.content{
-    padding-left: 250px;
+.content {
+  padding-left: 250px;
 }
 
-mat-toolbar{
-    position: relative;
-    z-index: 5;
+mat-toolbar {
+  position: relative;
+  z-index: 5;
 }
 
-mat-sidenav-container{
-    height: calc(100vh - 64px);
+mat-sidenav-container {
+  height: calc(100vh - 64px);
+}
+
+mat-sidenav {
+  background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 mat-sidenav,
 mat-sidenav-content {
   transition: all 300ms ease-in-out;
+}
+
+mat-sidenav-content {
+  background-image: url('./../assets/img/portada.webp');
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
 }
 
 mat-toolbar {
@@ -31,6 +42,7 @@ mat-toolbar {
   .toolbar-title {
     margin-left: 18px;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
+
   }
 
   .icono {
@@ -40,6 +52,31 @@ mat-toolbar {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     border-radius: 100%;
     padding: 5px 7px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  mat-toolbar {
+    .toolbar-title {
+      font-size: 1rem;
+      margin-left: -10px;
+    }
+  }
+
+  .toolbar-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .icono {
+    display: none;
+  }
+
+  mat-sidenav-content {
+    background-image: url('./../assets/img/game.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
 }

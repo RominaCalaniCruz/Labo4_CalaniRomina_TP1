@@ -28,10 +28,10 @@ export class GamesComponent {
   //   // window.location.href = ''+nombre;
   // }
   gridCols: number;
-  imagen = '../../assets/gifs/slot.jpg';
-  imagen2 = '../../assets/gifs/juego-del-ahorcado.png';
-  imagen3 = '../../assets/gifs/cartas.png';
-  imagen4 = '../../assets/gifs/quiz.png';
+  imagen = '../../assets/img/slot.png';
+  imagen2 = '../../assets/img/ahorcado2.png';
+  imagen3 = '../../assets/img/mayor_menor.png';
+  imagen4 = '../../assets/img/quiz.png';
   gif = '../../assets/gifs/slot.gif';
   gif2 = '';
   gif3 = '';

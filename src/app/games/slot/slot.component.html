@@ -1,31 +1,21 @@
-<!-- <div class="slot-machine">
-    <div class="reel" *ngFor="let reel of reels">
-      <div class="slot" *ngFor="let slot of reel.slots" [style.backgroundImage]="'url(' + slot + ')'"></div>
-    </div>
-    <button (click)="spin()" class="btn btn-primary">Spin</button>
-  </div> -->
-<!-- <div class="slot-machine">
-    <div class="reel">
-      <div class="slot" [ngStyle]="{ 'background-image': 'url(' + currentImage + ')' }"></div>
-    </div>
-  </div> -->
-  <h1 style="margin-bottom: 50px; text-align: center;">
+<div class="titulo">
+  <h1 style="text-align: center; background-color: whitesmoke; padding: 12px; border-radius: 10px;">
     MAQUINA TRAGAMONEDAS
   </h1>
-<div class="slot-machine">
-    <div class="reel" *ngFor="let reel of reels">
-        <!-- class="slot"
-        [ngStyle]="{ 'background-image': 'url(' + reel.currentImage + ')' }" -->
-      <!-- <div class="slot"
-      > -->
-      <img class="slot" [src]="reel.currentImage" alt="">
-    <!-- </div> -->
-    </div>
-  </div>
-<div class="button-container ">
 
+</div>
+
+<div class="slot-machine">
+  <div class="reel" *ngFor="let reel of reels">
+    <img class="slot" [src]="reel.currentImage" alt="">
+  </div>
+</div>
+<div class="botonera">
+
+  <div class="button-container ">
     <button mat-flat-button color="accent" (click)="startSpinning()" [disabled]="start">
-       Girar
+      Girar
     </button>
     <button mat-flat-button color="warn" (click)="stopInterval()" [disabled]="!start">Detener</button>
+  </div>
 </div>

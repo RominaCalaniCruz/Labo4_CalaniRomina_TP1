@@ -24,18 +24,17 @@
   </ng-container>
 
   <ng-template #notLoggedIn>
-    <button (click)="openLogin()"  mat-flat-button >INICIAR SESIÓN</button>
+    <button (click)="openLogin()" mat-flat-button>INICIAR SESIÓN</button>
   </ng-template>
 
 </mat-toolbar>
-<!-- <app-header ></app-header> -->
 
-<!-- <mat-sidenav opened mode="side" [style.width]="sidenavWidth()"> -->
 <mat-sidenav-container>
+
   <mat-sidenav style="background-color: #dfe8d1;" opened mode="side" [style.width.px]="sidenavWidth">
     <app-sidenav></app-sidenav>
   </mat-sidenav>
-  <!-- <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth"> -->
+
   <mat-sidenav-content style="margin-left: 0">
     <div [style.padding-left.px]="sidenavWidth">
       <router-outlet />

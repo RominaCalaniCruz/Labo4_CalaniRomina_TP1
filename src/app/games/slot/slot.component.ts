@@ -24,9 +24,9 @@ export class SlotComponent {
     'assets/slot-machine/5.jpg'
   ];
   reels: Reel[] = [
-    { images: ['assets/slot-machine/1.png', 'assets/slot-machine/2.png', 'assets/slot-machine/3.png', 'assets/slot-machine/4.png', 'assets/slot-machine/5.png'], currentIndex: 0, currentImage: '' , intervalTime: 300},
-    { images: ['assets/slot-machine/1.png', 'assets/slot-machine/2.png', 'assets/slot-machine/3.png', 'assets/slot-machine/4.png', 'assets/slot-machine/5.png'], currentIndex: 0, currentImage: '', intervalTime: 500 },
-    { images: ['assets/slot-machine/1.png', 'assets/slot-machine/2.png', 'assets/slot-machine/3.png', 'assets/slot-machine/4.png', 'assets/slot-machine/5.png'], currentIndex: 0, currentImage: '' , intervalTime: 700}
+    { images: ['assets/slot-machine/1.png', 'assets/slot-machine/2.png', 'assets/slot-machine/3.png', 'assets/slot-machine/4.png', 'assets/slot-machine/5.png','assets/slot-machine/6.png','assets/slot-machine/7.png'], currentIndex: 0, currentImage: '' , intervalTime: 300},
+    { images: ['assets/slot-machine/1.png', 'assets/slot-machine/2.png', 'assets/slot-machine/3.png', 'assets/slot-machine/4.png', 'assets/slot-machine/5.png','assets/slot-machine/6.png','assets/slot-machine/7.png'], currentIndex: 0, currentImage: '', intervalTime: 500 },
+    { images: ['assets/slot-machine/1.png', 'assets/slot-machine/2.png', 'assets/slot-machine/3.png', 'assets/slot-machine/4.png', 'assets/slot-machine/5.png','assets/slot-machine/6.png','assets/slot-machine/7.png'], currentIndex: 0, currentImage: '' , intervalTime: 700}
   ];
   // reels = [
   //   { slots: [] as string[] },

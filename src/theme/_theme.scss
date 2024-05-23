@@ -9,6 +9,9 @@ $accent: mat.define-palette($accent-palette, 300, 800, 200);
 // The "warn" palette is optional and defaults to red if not specified.
 $warn: mat.define-palette($warn-palette);
 
+$custom-typography: mat.define-typography-config(
+  $font-family: 'Salsa', 
+);
 
 $theme: mat.define-light-theme((
  color: (
@@ -16,8 +19,8 @@ $theme: mat.define-light-theme((
    accent: $accent,
    warn: $warn,
  ),
- typography: mat.define-typography-config(),
- density: 0,
+  typography: $custom-typography,
+  density: 0,
 ));
 
 @include mat.all-component-themes($theme);

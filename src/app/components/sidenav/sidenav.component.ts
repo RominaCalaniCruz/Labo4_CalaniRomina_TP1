@@ -3,6 +3,7 @@ import { Component, Input, computed, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+import { FirebaseService } from '../../services/firebase.service';
 export type MenuItem = {
   icon: string,
   label: string,
@@ -20,23 +21,12 @@ export class SidenavComponent {
   @Input() set collapsed(val: boolean) {
       this.sideNavCollapsed.set(val);
   }
-  
   menuItems = signal<MenuItem[]>([
     {
       icon: "home",
       label: "Inicio",
-      route: "about",
+      route: "home",
     },
-    // {
-    //   icon: "face",
-    //   label: "Cuenta",
-    //   route: "auth/login",
-    // },
-    // {
-    //   icon: "info",
-    //   label: "Informacion",
-    //   route: "about",
-    // },
     {
       icon: "videogame_asset",
       label: "Juegos",
@@ -46,17 +36,16 @@ export class SidenavComponent {
       icon: "mark_unread_chat_alt",
       label: "Chat",
       route: "chat"
-    }
+    },{
+      icon: "info",
+      label: "Sobre mi",
+      route: "about",
+    },
   ]);
   profilePicSize = computed(() => (this.sideNavCollapsed() ? '32' : '100'));
-  // isExpanded: boolean = true;
-  // menuItems = [
-  //   { name: 'Inicio', icon: 'home' },
-  //   { name: 'Juegos', icon: 'settings' },
-  //   { name: 'Quien soy', icon: 'info' }
-  // ];
-
-  // toggleSidenav() {
-  //   this.isExpanded = !this.isExpanded;
+  // getFilteredMenuItems() {
+  //   // console.log(this.authService.usuarioActual());
+  //   return this.menuItems().filter(item => item.route !== 'chat' || this.authService.usuarioActual());
+    
   // }
 }

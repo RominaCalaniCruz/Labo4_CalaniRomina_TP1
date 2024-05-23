@@ -1,0 +1,126 @@
+.juego {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 10px;
+  h1{
+    margin-bottom:5px ;
+  }
+}
+.card-container {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+  margin: 16px;
+  
+}
+
+.card img {
+  width: 200px;
+  margin: 0 30px;
+  -webkit-box-shadow: 1px 4px 30px 9px rgba(255,255,255,1);
+-moz-box-shadow: 1px 4px 30px 9px rgba(255,255,255,1);
+box-shadow: 1px 4px 30px 9px rgba(255,255,255,1);
+border-radius: 10px;
+//   height: auto;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+}
+
+.heart {
+  // font-size: 24px; /* Tamaño del icono de corazón */
+  color: red; /* Color del corazón */
+  margin-right: 5px; /* Espacio entre los corazones */
+}
+
+.lost-life {
+  color: red;
+}
+.hearts-container{
+    display: flex;
+    justify-content: center;
+    // flex-direction: column;
+}
+.corazon {
+  font-size: 50px;
+  height: auto;
+  width: auto;
+}
+.snack-bar-enter {
+    animation: fadeIn 0.5s;
+    background-color: #08e23e !important;
+    color: green;
+  }
+  
+  .snack-bar-exit {
+    animation: fadeOut 0.5s;
+    background-color: #678b36;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+.mayor-menor-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button{
+        margin: 0 30px;
+        background-color: #53368b;
+        color: whitesmoke;
+        width: 200px;
+        height: 50px;
+        font-size: larger;
+    }
+}
+
+.inicio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button{
+        width: 200px;
+        height: 50px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .card {
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+        img{
+        width: 100px;
+        margin: 0 10px;
+        // flex-direction: row;
+        }
+        margin-bottom: 25px;
+    }
+    .mayor-menor-btn{
+        flex-direction: column;
+        button{
+            // width: 100px;
+            margin: 10px 0;
+            // height: 30px;
+            // font-size: medium;
+        }
+
+    }
+}

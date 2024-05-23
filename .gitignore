@@ -45,3 +45,5 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
+/src/environmentConfig.ts
+/src/assets/img/miFoto.png

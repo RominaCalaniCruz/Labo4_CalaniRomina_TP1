@@ -1,41 +1,15 @@
-<!-- <div class="container">
-    <div class="chat-list">
-      <h2>Mensajes del grupo</h2>
-      <ul>
-        <li *ngFor="let message of messages">
-          <span>{{ message.username }}:</span>
-          <p>{{ message.text }}</p>
-        </li>
-      </ul>
-    </div>
-  
-    <div class="chat-input">
-      <h2>Mensajes enviados por {{ username }}</h2>
-      <form (ngSubmit)="sendMessage()">
-        <input type="text" [(ngModel)]="newMessage" placeholder="Escribe un mensaje...">
-        <button type="submit">Enviar</button>
-      </form>
-      <ul>
-        <li *ngFor="let message of myMessages">
-          <span>{{ message.username }}:</span>
-          <p>{{ message.text }}</p>
-        </li>
-      </ul>
-    </div>
-  </div> -->
-  <div>
-    <h1>chat </h1>
+
+  <div class="titulo">
+    <h1 style="background-color: azure; padding: 5px 10px;border-radius: 30px;">Chat</h1>
   </div>
 
-<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
-
   <div class="chat-content ">
-    <div class="chat-container">
+    <div class="chat-container" *ngIf="login">
 
       <div class="scroll-container">
         <div class="messages" #messageContainer>
-          <div *ngFor="let message of messages" [ngClass]="{'current-user': message.nombre === username, 'other-user': message.nombre !== username}">
-            <strong>{{ message.nombre }}:</strong> {{ message.mensaje }} 
+          <div *ngFor="let message of messages" [ngClass]="{'current-user': message.email === emailActual, 'other-user': message.email !== emailActual}">
+            <p> <strong>{{ message.nombre }}:</strong> {{ message.mensaje }} </p>
             <p>{{ message.fecha.toDate() | date:'short' }}</p>
           </div>
         </div>
@@ -45,9 +19,11 @@
   
   
       <div class="message-input">
-        <input type="text" [(ngModel)]="newMessage" placeholder="Escribe algo" />
+        <input type="text" [(ngModel)]="newMessage" placeholder="Escribe algo..." />
         <button mat-fab color="warn" (click)="guardarMensaje()"> <mat-icon>send</mat-icon></button>
       </div>
     </div>
+    <div class="no-registrado" *ngIf="!login">
+      <h3>Necesitas iniciar sesion para acceder al chat.</h3>
+    </div>
   </div>
-</div>

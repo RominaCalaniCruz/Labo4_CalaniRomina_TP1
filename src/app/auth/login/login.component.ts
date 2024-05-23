@@ -1,214 +1,173 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { FirebaseService, User } from '../../services/firebase.service';
-// import { AngularFireAuth } from '@angular/fire/auth';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { addDoc, collection, collectionData } from '@angular/fire/firestore';
-
-// import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
-import { MatDialogRef } from '@angular/material/dialog';
-
-// import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
-import { FirebaseService, User } from '../../services/firebase.service';
+import { Timestamp } from '@angular/fire/firestore';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormsModule } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FirebaseService } from '../../services/firebase.service';
 import { Subscription } from 'rxjs';
 import { Firestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+import { RegisterComponent } from '../register/register.component';
 @Component({
   selector: 'app-login',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule, MatTabsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatSelectModule, MatProgressSpinnerModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   loginForm: FormGroup = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  });
+  errorMessage: string;
+
   hide = true;
   selected = 'ninguno';
   showSpinner = false;
-  public usersCollection:any[] = [];
-  private sub!:Subscription;
-  // firebaseSvc = inject(FirebaseService);
-  constructor(private firestore: Firestore,public authSvc: FirebaseService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<LoginComponent>) {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
-    this.GetData();
-  }
-  userMail: string = "";
-  userPWD: string = "";
-  // selected: string;
-  loggedUser: string = "";
 
-  GetData(){
-    let col = collection(this.firestore, 'users');
-    
-    const observable = collectionData(col);
+  constructor(private dialog: MatDialog, private router: Router,
+    public authSvc: FirebaseService,
+    private formBuilder: FormBuilder, public dialogRef: MatDialogRef<LoginComponent>
+  ) { }
 
-    this.sub = observable.subscribe((respuesta:any) => {
-
-      //Actualizamos nuestro array
-      this.usersCollection = respuesta;
-
-      //Actualizamos la cantidad de registros que contiene la colección (Ejemplo propuesto en clase)
-      // this.countLogins = this.loginsCollection.length;
-
-      console.log(this.usersCollection);
-    })
-
-  }
-
-  login() {
-    if(this.loginForm.valid){
-      
-      const { email, password } = this.loginForm.value;
+  onSubmit() {
+    if (this.loginForm.valid) {
       this.showSpinner = true;
-      this.authSvc.signIn(email, password )
-      .then( (res) =>{
-        // this.showSpinner = false;
-        console.log('Login successful, UID:', res.user.uid);
-        // this.getUserName(res.user.uid);
-        // const username = this.authSvc.getUserNameByUid(res.user.uid);
-        
-        const user = this.usersCollection.find(user=> user.id === res.user.uid);
-        this.authSvc.saveInLocalStorage('user',user);
-          console.log("inicio sesion");
-          this.closeDialog();
-          Swal.fire({
-            icon: 'success',
-            title: '¡Bienvenido!',
-            text: `HOLA ${user.name}`,
-          });
-      }).catch((err)=>{
-        console.log(err);
-        Swal.fire({
-          icon: 'error',
-          title: '¡Ocurrio un error!',
-          text: `HOLA ${err}`,
+      const formValues = this.loginForm.getRawValue();
+      this.authSvc.inciarSesion(formValues.email, formValues.password).
+        subscribe({
+          next: () => {
+            console.log("inicio sesion");
+            this.guardarLog(formValues.email);
+            // 
+            Swal.fire({
+              icon: 'success',
+              title: '¡Bienvenido!',
+              text: `HOLA ${formValues.email}`,
+              showConfirmButton: false,
+              timer: 1300
+            });
+            setTimeout(() => {
+              // this.guardarLog2(formValues.email);
+              this.showSpinner = false;
+              this.closeDialog(true);
+              this.router.navigate(['home']);
+            }, 1305);
+          },
+          error: (err) => {
+            this.errorMessage = err.code;
+            this.showSpinner = false;
+            console.log(this.errorMessage);
+            Swal.fire({
+              icon: 'error',
+              title: '¡Ocurrio un error!',
+              text: `Contraseña incorrecta`,
+            });
+          }
         });
-      }).finally(()=>{
-        this.showSpinner = false;
-      });
-
-    }
-
-  }
-  getUser(userId: string) {
-    try {
-      let path = `users/${userId}`;
-      this.authSvc.getDocument(path).then((user: User)=>{
-        this.authSvc.saveInLocalStorage('user',user);
-        console.log('User Name:', user.name);
-        Swal.fire({
-          icon: 'success',
-          title: '¡Bienvenido!',
-          text: `HOLA ${user.name}`,
-        });
-      }).catch((error)=>{
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'No se pudo encontrar el nombre del usuario',
-        });
-        console.error('Error getting user name:', error);
-      });
-      
-    } catch (error) {
-      console.error('Error getting user name:', error);
     }
   }
-  async getUserName(userId: string) {
-    try {
-      const user = await this.authSvc.getUserNameById(userId);
-      if(user){
-        this.authSvc.saveInLocalStorage('user',{
-          name: user.name,
-          email: user.email,
-          uid: user.id
-        });
-        // this.authSvc.saveInLocalStorage('user', user);
-        Swal.fire({
-          icon: 'success',
-          title: '¡Bienvenido!',
-          text: `HOLA ${user.name}`,
-        });
-        console.log('User data saved to localStorage:', user);
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'No se pudo encontrar el nombre del usuario',
-        });
+
+  abrirModalRegistro() {
+    this.dialogRef.close();
+    const registerDialogRef = this.dialog.open(RegisterComponent);
+    registerDialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigate(['home']);
       }
-      console.log('User Name:', user.name);
-    } catch (error) {
-      console.error('Error getting user name:', error);
-    }
+    });
   }
+  guardarLog(email: string) {
+    const currentDate = Timestamp.fromDate(new Date());
+    const log = {
+      user: email,
+      date: currentDate,
+    };
+    this.authSvc.setDocument(log, 'logs_users');
+  }
+
+
   autocomplete() {
     switch (this.selected) {
       case 'option1':
-        this.userMail = 'diego@gmail.com';
-        this.userPWD = 'jugador1';
+        this.loginForm.setValue({
+          email: 'mica@gmail.com',
+          password: '1234567'
+        });
         break;
       case 'option2':
-        this.userMail = 'victor@gmail.com';
-        this.userPWD = 'jugador2';
+        this.loginForm.setValue({
+          email: 'cielo@gmail.com',
+          password: '123456'
+        });
         break;
       case 'option3':
-        this.userMail = 'admin@admin.com';
-        this.userPWD = '123456';
+        this.loginForm.setValue({
+          email: 'admin@gmail.com',
+          password: '123456'
+        });
         break;
       default:
-        this.userMail = '';
-        this.userPWD = '';
+        this.loginForm.setValue({
+          email: '',
+          password: ''
+        });
         break;
     }
-    
+
   }
-  closeDialog() {
-    this.dialogRef.close();
+  closeDialog(success: boolean = false) {
+    this.dialogRef.close(success);
   }
   // login() {
-  //   if (this.loginForm.valid) {
-  //   const { email, password } = this.loginForm.value;
-  //   this.authService.login(email,password)
-  //     .then(() => {
-  //       // Redirigir al usuario después de iniciar sesión
-  //     })
-  //     .catch(error => {
-  //       // Manejar errores de inicio de sesión
-  //     });
-  //   }
-  // }
-  // onSubmit(): void {
-  //   if (this.loginForm.valid) {
+  //   if(this.loginForm.valid){
+
+  //     const { email, password } = this.loginForm.value;
   //     this.showSpinner = true;
-  //     this.firebaseSvc.signIn(this.loginForm.value as User)
-  //       .then((userCredential) => {
-  //         // El inicio de sesión fue exitoso
-  //         const user = userCredential.user; 
-  //         console.log('Inicio de sesión exitoso', userCredential);
+  //     this.authSvc.signIn(email, password )
+  //     .then( (res) =>{
+  //       console.log('Login successful, UID:', res.user.uid);
+  //       const user = this.usersCollection.find(user=> user.id === res.user.uid);
+  //       this.authSvc.saveInLocalStorage('user',user);
+  //       // console.log(this.authSvc.currentUser?.email);
+  //       // this.authSvc.verUsuarioactual();
+  //         console.log("inicio sesion");
+  //         this.closeDialog(true);
+  //         this.guardarLog();
   //         Swal.fire({
   //           icon: 'success',
   //           title: '¡Bienvenido!',
-  //           text: `HOLA ${this.loginForm.get('email')}`,
+  //           text: `HOLA ${user.name}`,
+  //           showConfirmButton: false,
+  //           timer: 1300
   //         });
-  //       })
-  //       .catch((error) => {
-  //         // Hubo un error en el inicio de sesión
-  //         Swal.fire({
-  //           icon: 'error',
-  //           title: 'Error',
-  //           text: error
-  //         })
-  //         console.error('Error al iniciar sesión', error);
-  //       })
-  //       .finally(()=>{
-  //         this.showSpinner = false;
-  //       })
-  //       ;
+  //         setTimeout(() => {            
+  //           this.router.navigate(['home']);
+  //         }, 1305);
+
+  //     }).catch((err)=>{
+  //       console.log(err);
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: '¡Ocurrio un error!',
+  //         text: `Contraseña incorrecta`,
+  //       });
+  //     }).finally(()=>{
+  //       this.showSpinner = false;
+  //     });
+
   //   }
+
   // }
 }
