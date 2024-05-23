@@ -1,29 +1,33 @@
+<div class="titulo">
+  <h1 style="background-color: azure; padding: 5px 10px; border-radius: 30px">
+    Chat
+  </h1>
+</div>
 
-  <div class="titulo">
-    <h1 style="background-color: azure; padding: 5px 10px;border-radius: 30px;">Chat</h1>
-  </div>
-
-  <div class="chat-content ">
-    <div class="chat-container" *ngIf="login">
-
-      <div class="scroll-container">
-        <div class="messages" #messageContainer>
-          <div *ngFor="let message of messages" [ngClass]="{'current-user': message.email === emailActual, 'other-user': message.email !== emailActual}">
-            <p> <strong>{{ message.nombre }}:</strong> {{ message.mensaje }} </p>
-            <p>{{ message.fecha.toDate() | date:'short' }}</p>
-          </div>
+<div class="chat-content">
+  <div class="chat-container" *ngIf="login">
+    <div class="scroll-container">
+      <div class="messages" #messageContainer>
+        <div *ngFor="let message of messages" [ngClass]="{
+            'current-user': message.email === emailActual,
+            'other-user': message.email !== emailActual
+          }">
+          <p>
+            <strong>{{ message.nombre }}:</strong> {{ message.mensaje }}
+          </p>
+          <p>{{ message.fecha.toDate() | date : "short" }}</p>
         </div>
-  
-      </div>
-    
-  
-  
-      <div class="message-input">
-        <input type="text" [(ngModel)]="newMessage" placeholder="Escribe algo..." />
-        <button mat-fab color="warn" (click)="guardarMensaje()"> <mat-icon>send</mat-icon></button>
       </div>
     </div>
-    <div class="no-registrado" *ngIf="!login">
-      <h3>Necesitas iniciar sesion para acceder al chat.</h3>
+
+    <div class="message-input">
+      <input type="text" [(ngModel)]="newMessage" placeholder="Escribe algo..." />
+      <button mat-fab color="warn" (click)="guardarMensaje()">
+        <mat-icon>send</mat-icon>
+      </button>
     </div>
   </div>
+  <div class="no-registrado" *ngIf="!login">
+    <h3>Necesitas iniciar sesion para acceder al chat.</h3>
+  </div>
+</div>
