@@ -12,7 +12,4 @@ import { RouterLink } from '@angular/router';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-  isMenuCollapsed = true;
-  show = false;
-	autohide = true;
 }

@@ -31,25 +31,24 @@
   display: flex;
   align-items: center;
 }
-span{
+span {
   padding-left: 15px;
   font-family: "Salsa";
 }
 .menu-item {
   display: flex;
   align-items: center;
-    border-left: 5px solid;
-    span{
+  border-left: 5px solid;
+  span {
+    color: white;
+  }
+  border-left-color: rgba(0, 0, 0, 0);
+}
 
-      color: white;
-    }
-    border-left-color: rgba(0, 0, 0, 0);
+.selected-menu-item {
+  border-left-color: #de3159;
+  background: rgba(0, 0, 0, 0.05);
+  span {
+    color: #de3159;
   }
-  
-  .selected-menu-item {
-    border-left-color: #de3159;
-    background: rgba(0, 0, 0, 0.05);
-    span{
-      color: #de3159;
-    }
-  }
+}

@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatButtonModule,MatIconModule, MatSidenavModule,MatListModule,
+  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule,
     MatMenuModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
